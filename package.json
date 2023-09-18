@@ -1,0 +1,19 @@
+{
+  "name": "evo-cache",
+  "version": "1.0.0",
+  "description": "Simple cache solution.",
+  "main": "index.ts",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "evo-cache",
+    "cache"
+  ],
+  "author": "evolplus",
+  "license": "MIT",
+  "dependencies": {
+    "@types/node": "^20.6.0",
+    "typescript": "^5.2.2"
+  }
+}
