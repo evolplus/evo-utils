@@ -4,7 +4,7 @@
   "description": "Simple cache solution.",
   "main": "index.ts",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-node test.ts"
   },
   "keywords": [
     "evo-cache",
@@ -12,8 +12,9 @@
   ],
   "author": "evolplus",
   "license": "MIT",
-  "dependencies": {
+  "devDependencies": {
     "@types/node": "^20.6.0",
-    "typescript": "^5.2.2"
+    "typescript": "^5.2.2",
+    "ts-node": "^10.9.1"
   }
 }
