@@ -72,7 +72,7 @@ export class TimeBasedLimiter implements RateLimiter {
             let tf = this.timeframes[i],
                 q = queues[i];
             while (q.count() > 0) {
-                let ts = q.peek();
+                let ts = q.peekFirst();
                 if (ts && ts < now - tf) {
                     q.shift();
                 } else {

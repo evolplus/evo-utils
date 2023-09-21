@@ -5,6 +5,7 @@
  * @template T The type of elements that the deque will store.
  */
 export class Deque<T> {
+    private capacity: number; // The capacity of the deque, for fast access.
     private list: T[]; // The underlying list used to store the elements of the deque.
     private head: number; // Pointer to the front of the deque.
     private tail: number; // Pointer to the end of the deque.
@@ -16,6 +17,7 @@ export class Deque<T> {
      * @param {number} capacity - The initial capacity of the deque.
      */
     constructor(capacity: number) {
+        this.capacity = capacity;
         this.list = new Array<T>(capacity);
         this.head = 0;
         this.tail = 0;
@@ -37,7 +39,7 @@ export class Deque<T> {
      * @returns {boolean} Returns true if successfully, otherwise (the deque is full) it will returns false.
      */
     add(value: T): boolean {
-        let next = (this.tail + 1) % this.list.length;
+        let next = (this.tail + 1) % this.capacity;
         if (next == this.head) {
             // queue is already full, not add new element and return false
             return false;
@@ -52,9 +54,20 @@ export class Deque<T> {
      * 
      * @returns {T | undefined} The element at the front of the deque, or undefined if the deque is empty.
      */
-    peek(): T | undefined {
+    peekFirst(): T | undefined {
         if (this.tail != this.head) {
             return this.list[this.head];
+        }
+    }    
+
+    /**
+     * Returns the element at the end of the deque without removing it.
+     * 
+     * @returns {T | undefined} The element at the front of the deque, or undefined if the deque is empty.
+     */
+    peekLast(): T | undefined {
+        if (this.tail != this.head) {
+            return this.list[(this.tail + this.capacity - 1) % this.capacity];
         }
     }    
 
@@ -66,7 +79,7 @@ export class Deque<T> {
     shift(): T | undefined {
         if (this.tail != this.head) {
             let val = this.list[this.head];
-            this.head = (this.head + 1) % this.list.length;
+            this.head = (this.head + 1) % this.capacity;
             return val;
         }
     }
@@ -78,7 +91,7 @@ export class Deque<T> {
      */
     pop(): T | undefined {
         if (this.tail != this.head) {
-            let  last = (this.tail + this.list.length - 1) % this.list.length;
+            let last = (this.tail + this.capacity - 1) % this.capacity;
             this.tail = last;
             return this.list[last];
         }
@@ -90,6 +103,13 @@ export class Deque<T> {
      * @returns {number} The number of elements currently stored in the deque.
      */
     count(): number {
-        return (this.tail + this.list.length - this.head) % this.list.length;
+        return (this.tail + this.capacity - this.head) % this.capacity;
+    }
+
+    /** 
+     * Remove all elements of the current deque. 
+     */
+    clear() {
+        this.head = this.tail = 0; // Just do it simple by resetting head and tail
     }
 }
