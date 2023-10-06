@@ -1,5 +1,5 @@
 {
-  "name": "evo-utils",
+  "name": "@evolplus/evo-utils",
   "version": "1.0.0",
   "description": "Simple utilities solution.",
   "types": "./dist/index.d.ts",
@@ -28,5 +28,13 @@
   "dependencies": {
     "@types/node": "^20.6.0",
     "typescript": "^5.2.2"
-  }
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/evolplus/evo-utils.git"
+  },
+  "bugs": {
+    "url": "https://github.com/evolplus/evo-utils/issues"
+  },
+  "homepage": "https://github.com/evolplus/evo-utils#readme"
 }

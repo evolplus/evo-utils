@@ -1,2 +1,5 @@
 src/
+node_modules
+test.ts
+benchmark.ts
 tsconfig.json
