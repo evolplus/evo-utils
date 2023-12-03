@@ -4,7 +4,7 @@
  * 
  * @template T The type of elements that the deque will store.
  */
-export class Deque<T> {
+export class Dequeue<T> {
     private capacity: number; // The capacity of the deque, for fast access.
     private list: T[]; // The underlying list used to store the elements of the deque.
     private head: number; // Pointer to the front of the deque.
@@ -17,6 +17,7 @@ export class Deque<T> {
      * @param {number} capacity - The initial capacity of the deque.
      */
     constructor(capacity: number) {
+        if (capacity <= 0) throw new Error('Capacity must be greater than zero.');
         this.capacity = capacity;
         this.list = new Array<T>(capacity);
         this.head = 0;

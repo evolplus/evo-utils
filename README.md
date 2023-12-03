@@ -20,8 +20,8 @@ DecayLimiter which use different algorithms to calculate the rate.
 
 2. Import and utilize the utility classes as needed:
 
-    ```typescipt
-    import { Cache, LRUCache, DecayCache, Deque, RateLimiter, TimeBasedLimiter, DecayLimiter } from 'evo-utils';
+    ```typescript
+    import { Cache, LRUCache, DecayCache, Dequeue, RateLimiter, TimeBasedLimiter, DecayLimiter } from 'evo-utils';
     ```
 3. Examples & Usage
 For detailed examples and usage, please refer to the respective sections for each utility.

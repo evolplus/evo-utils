@@ -47,7 +47,11 @@ abstract class BasicCache<T> implements Cache<T> {
     private map: { [key: string]: CacheItem<T> } = {};
     private _capacity: number;
     private _count: number;
+
+    // head of the linked list, which has the top priority for keeping in the cache 
     protected head: CacheItem<T>;
+    
+    // tail of the linked list, which has the lowest priority for keeping in the cache 
     protected tail: CacheItem<T>;
 
     /**

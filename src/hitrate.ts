@@ -1,5 +1,5 @@
 import { DecayCache } from "./cache";
-import { Deque } from "./queue";
+import { Dequeue } from "./queue";
 
 export interface RateLimiter {
     hit(key: string): boolean;
@@ -25,7 +25,7 @@ export type TimeBasedLimiterConfig = {
 export class TimeBasedLimiter implements RateLimiter {
     private timeframes: number[] = [];
     private limits: number[] = [];
-    private queues: DecayCache<Deque<number>[]>;
+    private queues: DecayCache<Dequeue<number>[]>;
 
     /**
      * Creates an instance of the TimeBasedLimiter class with specified timeframes and limits.
@@ -37,7 +37,7 @@ export class TimeBasedLimiter implements RateLimiter {
             this.timeframes.push(parseInt(tf));
             this.limits.push(config[tf]);
         }
-        this.queues = new DecayCache<Deque<number>[]>(capacity);
+        this.queues = new DecayCache<Dequeue<number>[]>(capacity);
     }
 
     /**
@@ -45,12 +45,12 @@ export class TimeBasedLimiter implements RateLimiter {
      * Each key will have multiple queues, each corresponding to a specific timeframe and its limit.
      * 
      * @private
-     * @returns {Deque<number>[]} An array of deques representing the request queues for the key.
+     * @returns {Dequeue<number>[]} An array of deques representing the request queues for the key.
      */
-    private initKey(): Deque<number>[] {
-        let queues = new Array<Deque<number>>(this.timeframes.length);
+    private initKey(): Dequeue<number>[] {
+        let queues = new Array<Dequeue<number>>(this.timeframes.length);
         for (let i = 0; i < this.timeframes.length; i++) {
-            queues[i] = new Deque(this.limits[i]);
+            queues[i] = new Dequeue(this.limits[i]);
         }
         return queues;
     }
