@@ -119,9 +119,9 @@ export class DecayLimiter implements RateLimiter {
     hit(key: string): boolean {
         let score = this.decays.hit(key);
         if (!score) {
-            this.decays.put(key, undefined);
+            this.decays.put(key, 1);
             score = 1;
-        }
+        } 
         return score <= this.limit;
     }
 }

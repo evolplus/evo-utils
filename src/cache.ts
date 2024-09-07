@@ -305,6 +305,7 @@ export class DecayCache<T> extends BasicCache<T> implements Cache<T> {
             now = Date.now();
         if (item) {
             this.calculate(item, now);
+            item.score! += 1;
             return item.score!;
         }
         return 0;
