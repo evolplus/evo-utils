@@ -9,6 +9,9 @@ import { Dequeue } from './queue';
 // Importing rate limiter utilities from hitrate module
 import { RateLimiter, TimeBasedLimiterConfig, TimeBasedLimiter, DecayLimiter } from './hitrate';
 
+import * as miscs from './miscs';
+import * as naming from './naming';
+
 // Exporting all imported modules for external use
 // Cache: Base interface for cache implementations
 // LRUCache: Implementation of Least Recently Used (LRU) caching strategy
@@ -26,5 +29,7 @@ export {
   RateLimiter, 
   TimeBasedLimiterConfig, 
   TimeBasedLimiter,
-  DecayLimiter
+  DecayLimiter,
+  miscs,
+  naming 
 };
