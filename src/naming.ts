@@ -73,10 +73,14 @@ export function convertObject(obj: any, from: NamingConvention, to: NamingConven
     return copy;
 }
 
-export function createConverter(fields: string[], from: NamingConvention, to: NamingConvention): ObjectConverter {
+export function createConverter(fields: string[] | readonly string[], from: NamingConvention, to: NamingConvention, reversed: boolean = false): ObjectConverter {
     let mapping: Record<string, string> = {};
     fields.forEach(f => {
-        mapping[f] = convertName(f, from, to);
+        if (reversed) {
+            mapping[convertName(f, from, to)] = f;
+        } else {
+            mapping[f] = convertName(f, from, to);
+        }
     });
     return (obj: any) => {
         let result: any = {};
