@@ -50,7 +50,7 @@ abstract class BasicCache<T> implements Cache<T> {
 
     // head of the linked list, which has the top priority for keeping in the cache 
     protected head: CacheItem<T>;
-    
+
     // tail of the linked list, which has the lowest priority for keeping in the cache 
     protected tail: CacheItem<T>;
 
@@ -127,6 +127,25 @@ abstract class BasicCache<T> implements Cache<T> {
     }
 
     /**
+     * Check a key is in the cache or not.
+     * 
+     * @param {string} key - The key associated with the item to be checked.
+     * @returns {boolean} True if the key is in the cache, otherwise false.
+     */
+    contains(key: string): boolean {
+        let item = this.map[key];
+        if (item) {
+            if (item.key && item.expiry && item.expiry < Date.now()) {
+                delete this.map[key];
+                this.remove(item);
+            } else {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    /**
      * Removes an item from the cache based on its key.
      * 
      * @param {string} key - The key associated with the item to be removed.
@@ -196,7 +215,7 @@ abstract class BasicCache<T> implements Cache<T> {
      * @param item The cache item that will be attached to the linked list.
      */
     protected abstract attachItem(item: CacheItem<T>): void;
-     /**
+    /**
      * Abstract method that implements the logics of a cache item when it is hit by read.
      * @param item The cache item that will be calculated and/or processed.
      */
